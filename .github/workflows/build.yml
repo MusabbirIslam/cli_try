@@ -10,6 +10,12 @@
        name: Build for Windows
        runs-on: ubuntu-latest
        steps:
+         - name: Free up disk space
+           run: |
+             sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+             sudo docker image prune --all --force
+             df -h /
+
          - name: Check out the code
            uses: actions/checkout@v4
            with:
